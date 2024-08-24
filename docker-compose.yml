@@ -1,0 +1,29 @@
+version: '3.10'
+
+services:
+  web:
+    build: .
+    volumes:
+      - .:/django_app
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+      - redis
+
+    command: python3 manage.py runserver
+    
+
+  db:
+    image: postgres
+    volumes: 
+      - ./postgresql_data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    container_name: sreda_postgres_db
+
+  redis:
+    image: redis
+    container_name: redis_sreda_db
