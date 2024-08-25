@@ -1,2 +1,6 @@
+# main app framework
 Django==5.1
+# tests
 selenium==4.23.1
+# implementations for postgres
+psycopg==3.2.1
