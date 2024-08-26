@@ -50,5 +50,5 @@ jobs:
     - name: Run tests
       run: |
         source venv/bin/activate
-        cd chord_tones_sreda_project/functional_tests
+        cd chord_tones_sreda_project
         python3 manage.py test
