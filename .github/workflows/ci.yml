@@ -9,7 +9,7 @@ jobs:
 
     services:
       postgres:
-        image: postgres:14
+        image: postgres:latest
         env:
           POSTGRES_DB: mydatabase
           POSTGRES_USER: myuser
