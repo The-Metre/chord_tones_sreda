@@ -1,9 +1,11 @@
-import unittest
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
+
 from selenium import webdriver
+from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 
-class FunctionalTest(unittest.TestCase):
+class FunctionalTest(StaticLiveServerTestCase):
     def setUp(self) -> None:
         self.options = Options()
         self.options.add_argument('--headless')
@@ -16,15 +18,5 @@ class FunctionalTest(unittest.TestCase):
         self.browser.quit()
 
 
-    def test_starting_page(self):
-
-        self.browser.get('http://localhost:8000')
-
-        body = self.browser.find_element(By.TAG_NAME, 'body')
-        page_text = body.text
-
-        self.assertAlmostEqual('Test view',page_text)
-
-
 if __name__ == '__main__':
-    unittest.main(warnings='ignore')
+    StaticLiveServerTestCase.main(warnings='ignore')
