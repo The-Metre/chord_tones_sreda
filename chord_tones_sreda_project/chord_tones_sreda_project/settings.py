@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'chord_tones_app',
+    'fretboard_app',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
