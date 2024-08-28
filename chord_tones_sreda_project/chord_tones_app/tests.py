@@ -11,3 +11,8 @@ class HomePageTest(FunctionalTest):
         body = self.browser.find_element(By.TAG_NAME, 'body')
         self.assertEquals(body.text, 'Test view')
 
+
+    def test_home_page_uses_base_template(self):
+        
+        response = self.client.get('/')
+        self.assertTemplateUsed(response, 'base.html') 

@@ -5,5 +5,5 @@ from django.http import HttpResponse
 
 
 def fretboard_index(request):
-    return HttpResponse('Test fretboard view')
+    return render(request, 'fretboard.html')
 

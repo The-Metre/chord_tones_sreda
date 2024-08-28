@@ -5,7 +5,4 @@ from django.http import HttpResponse
 
 
 def index(request):
-    return HttpResponse('Test view')
-
-def home_page():
-    pass
+    return render(request, 'base.html')
