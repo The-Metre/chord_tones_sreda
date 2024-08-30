@@ -16,3 +16,4 @@ class HomePageTest(FunctionalTest):
         
         response = self.client.get('/')
         self.assertTemplateUsed(response, 'base.html') 
+

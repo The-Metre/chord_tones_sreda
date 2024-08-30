@@ -12,3 +12,10 @@ class FretboardPageTest(FunctionalTest):
         response = self.client.get('/fretboard')
         self.assertTemplateUsed(response, 'fretboard.html')
 
+
+    def test_fretboard_div_shown_on_the_page(self):
+        self.browser.get('http://127.0.0.1:8000/fretboard')
+        self.wait_for(lambda: self.assertEquals(
+            'Test fretboard div',
+            self.browser.find_element(By.CLASS_NAME, 'fretboard').text
+        ))
