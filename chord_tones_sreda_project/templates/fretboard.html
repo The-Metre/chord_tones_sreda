@@ -1,8 +1,15 @@
 {% extends 'base.html' %}
+{% load static %}
+
+<body>
 {% block fretboard %}
 <div>
     <div class="fretboard">Test fretboard div</div>
 </div>
-
-
 {% endblock %}
+
+{% block fretboard_scripts %}
+    <script src="{% static 'js/fretboard.js' %}"></script>
+{% endblock %}
+
+</body>
