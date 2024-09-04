@@ -49,7 +49,7 @@
             for (let i = 0; i < number_of_strings; i++) {
                 let string = fretboard_tools.createElement('div');
                 string.classList.add('string');
-                fretboard.appendChild(string);
+                fretboard_div.appendChild(string);
 
                 // add 'frets' to the 'string'
                 for (let fret = 0; fret <= number_of_frets; fret++) {
