@@ -3,13 +3,63 @@
 
 <body>
 {% block fretboard %}
+<div class="practice-instrumentary">
+    <label for="practice-option">Practice options:</label>
+
+    <label for="show-guitar-fretboard">Fretboard: </label>
+    <input type="checkbox" id="show-guitar-fretboard" checked>
+
+    <label for="show-metronome">Metronome: </label>
+    <input type="checkbox" id="show-metronome">
+
+    <label for="show-interval-listener">Interval listener: </label>
+    <input type="checkbox" id="show-interval-listener">
+
+</div>
+
+<div class="fretboard-settings">
+    <label for="instrument-selector">Selected instrument:</label>
+    <select name="instrument-selector" id="instrument-selector">
+    </select>
+    <div class="accidental-selector">
+        <input type="radio" class="acc-select" id="sharps" name="accidentals" value="sharps" checked>
+        <label for="sharps">♯</label>
+        <input type="radio" class="acc-select" id="flats" name="accidentals" value="flats">
+        <label for="flats">♭</label>
+    </div>
+    <label for="number-of-frets">Number of frets: </label>
+    <input type="number" id="number-of-frets" min="5" max="30" value="12">
+
+    <label for="show-all-notes">Show all notes: </label>
+    <input type="checkbox" id="show-all-notes">
+
+    <label for="show-duplicate-notes">Show duplicate notes: </label>
+    <input type="checkbox" id="show-duplicate-notes">
+
 <div>
     <div class="fretboard">Test fretboard div</div>
 </div>
+
+<div class="chord-name-section">
+    <div class="chord-group">
+        <div class="chord-name">Example of an F chord
+        </div>
+        <div class="chord-notes">F A C
+        </div>
+    </div>
+    <div class="chord-selection">
+
+        {{ stuff|json_script:'chord_stuff' }}
+        <input type="text" id="autocomplete-input" placeholder="Type chord to search...">
+        <div id="checkbox-list"></div>
+    </div>
+ </div>
+
 {% endblock %}
 
 {% block fretboard_scripts %}
     <script src="{% static 'js/fretboard.js' %}"></script>
+    
 {% endblock %}
 
 </body>

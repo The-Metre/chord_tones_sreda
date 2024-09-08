@@ -111,6 +111,126 @@
         },
     }
 
+    const fretboard_handlers = {
+        show_note_dot(event) {
+         /*  Add listeners to each fret, when hover on it by the mouse
+            change opacity, so a note of the fret will be visible
+        */  
+            // Check if show all notes is selected
+            if (show_all_notes) {
+                return;
+            }
+            if (event.target.classList.contains('fret-note')) {
+                if (show_duplicate_notes) {
+                    fretboard_app.toggle_duplicate_notes(event.target.getAttribute('note-data'), 1);
+                } else {
+                    event.target.style.setProperty('--note-dot-opacity', 1);
+                }
+            }
+        },
 
+        hide_note_dot(evernt) {
+         /*  When mouse out from the fret, change it opactity
+            to zero
+        */
+            // Check if show all notes is selected
+            if (show_all_notes) {
+                return;
+            }
+            if (show_duplicate_notes) {
+                fretboard_app.toggle_duplicate_notes(event.target.getAttribute('note-data'), 0);
+            } else {
+                event.target.style.setProperty('--note-dot-opacity', 0);
+            }
+        },
+
+        set_selected_instrument(event) {
+        /*  Whe user switch instrument options,
+            change number of strings value, based on an instrument  
+        */
+            selected_instrument = event.target.value;
+            number_of_strings = instrument_tuning_presets[selected_instrument].length;
+            fretboard_app.setup_fretboard();
+        },
+
+        set_accidentals(event) {
+            /*  Whe user switch accidental options, 
+                change a type of notes notation (flats or sharps)
+            */
+                if (event.target.classList.contains('acc-select')) {
+                    accidentals = event.target.value;
+                    fretboard_app.setup_fretboard();
+                    fretboard_app.setup_note_name_section();
+                } else {
+                    return;
+                }
+            },
+        
+        set_show_all_notes() {
+            // Set notes opacity to 1(visible) if 
+            // show all notes selected
+            show_all_notes = show_all_notes_selector.checked;
+            if (show_all_notes_selector.checked) {
+                root.style.setProperty('--note-dot-opacity', 1);
+                fretboard_app.setup_fretboard();
+            // If show all notes not selected
+            } else {
+                root.style.setProperty('--note-dot-opacity', 0);
+                fretboard_app.setup_fretboard();
+            }
+        },
+
+        set_show_duplicate_notes() {
+            /* Realization of a toggle event on the checkbox */
+                show_duplicate_notes = !show_duplicate_notes;
+        },
+
+        set_notes_to_show(event) {
+            let note_to_show = event.target.innerText.split(" ");
+            note_to_show.forEach(note => fretboard_app.toggle_duplicate_notes(note, 1));
+        },
+
+        set_notes_to_hide(event) {
+            if (!show_all_notes_selector.checked) {
+                let note_to_hide = event.target.innerText.split(" ");
+                note_to_hide.forEach(note => fretboard_app.toggle_duplicate_notes(note, 0));
+            } else {
+                return;
+            }
+        },
+
+        set_show_guitar_fretboard() {
+            show_guitar_fretboard = show_guitar_fretboard_selector.checked
+            if (!show_guitar_fretboard_selector.checked) {
+                guitar_fretboard_container.style.setProperty('display', 'none');
+                fretboard.style.setProperty('display', 'none');
+                note_name_section.style.setProperty('display', 'none');
+                chord_name_section.style.setProperty('display', 'none');
+            } else {
+                guitar_fretboard_container.style.removeProperty('display');
+                fretboard.style.removeProperty('display');
+                note_name_section.style.removeProperty('display');
+                chord_name_section.style.removeProperty('display');
+            }
+        },
+
+        setup_event_listeners() {
+
+            fretboard.addEventListener('mouseover', this.show_note_dot);
+            fretboard.addEventListener('mouseout', this.hide_note_dot);
+            instrument_selector.addEventListener('change', this.set_selected_instrument);
+            accidentals_selector.addEventListener('click', this.set_accidentals);
+            number_of_frets_selector.addEventListener('change', this.set_number_of_frets);
+            show_all_notes_selector.addEventListener('change', this.set_show_all_notes);
+            show_duplicate_notes_selector.addEventListener('change', this.set_show_duplicate_notes);
+            note_name_section.addEventListener('mouseover', this.set_notes_to_show);
+            note_name_section.addEventListener('mouseout', this.set_notes_to_hide);
+            chord_section.forEach(element => {
+                element.addEventListener('mouseover', this.set_notes_to_show);
+                element.addEventListener('mouseout', this.set_notes_to_hide);
+            });
+            show_guitar_fretboard_selector.addEventListener('change', this.set_show_guitar_fretboard);
+        },
+    }
     fretboard_app.init()
 })();
