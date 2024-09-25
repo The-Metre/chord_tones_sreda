@@ -9,10 +9,13 @@
         <title>Base html</title>        
     </head>
     <body>
-        Test view
-        {% block fretboard %}
-        {% endblock %}
+        <div class="container">
+            Test view
+            {% block fretboard %}
+            {% endblock %}
+
+            {% block fretboard_scripts %}
+            {% endblock %}
+        </div>
     </body>
-        {% block fretboard_scripts %}
-        {% endblock %}
 </html>

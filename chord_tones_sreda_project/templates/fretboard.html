@@ -14,7 +14,6 @@
 
     <label for="show-interval-listener">Interval listener: </label>
     <input type="checkbox" id="show-interval-listener">
-
 </div>
 
 <div class="fretboard-settings">
@@ -35,9 +34,10 @@
 
     <label for="show-duplicate-notes">Show duplicate notes: </label>
     <input type="checkbox" id="show-duplicate-notes">
-
+</div>
 <div>
-    <div class="fretboard">Test fretboard div</div>
+    <div class="fretboard">
+    </div>
 </div>
 
 <div class="chord-name-section">
@@ -47,13 +47,11 @@
         <div class="chord-notes">F A C
         </div>
     </div>
-    <div class="chord-selection">
-
-        {{ stuff|json_script:'chord_stuff' }}
-        <input type="text" id="autocomplete-input" placeholder="Type chord to search...">
-        <div id="checkbox-list"></div>
-    </div>
  </div>
+
+ <div class="note-name-section">
+</div>
+
 
 {% endblock %}
 

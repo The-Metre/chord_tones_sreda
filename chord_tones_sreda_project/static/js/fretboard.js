@@ -39,6 +39,9 @@
     const fretboard_app = {
         init() {
             this.setup_fretboard();
+            this.setup_selected_instrument();
+            this.setup_note_name_section();
+            fretboard_handlers.setup_event_listeners();
         },
 
         setup_fretboard() {
